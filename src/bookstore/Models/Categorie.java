@@ -11,4 +11,5 @@ package bookstore.Models;
  */
 public class Categorie {
     String name;
+    String datepub;
 }
