@@ -5,4 +5,10 @@ public class DaoCategorie {
 		return categorie;
 
 		}
+	public static void main(String[]args) {
+		System.out.println("dev 2");
+	}
+
+
+
 }
