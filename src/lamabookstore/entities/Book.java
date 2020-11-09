@@ -8,10 +8,7 @@ package lamabookstore.entities;
 import java.time.LocalDate;
 import java.util.*;
 
-/**
- *
- * @author chokri
- */
+
 public class Book {
     int id;
     String title ,author ;

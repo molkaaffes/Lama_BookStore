@@ -25,10 +25,7 @@ import java.util.logging.Logger;
 import java.util.Date;
 import java.util.List;
 
-/**
- *
- * @author chokri
- */
+
 public class DaoBook {
 
     public DateFormat dateFormat;
