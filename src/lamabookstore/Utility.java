@@ -5,12 +5,9 @@
  */
 package lamabookstore;
 
-/**
- *
- * @author chokri
- */
+
 public class Utility {
-    public  double CalculateTotalPrice(int qte, double prixU){
+    public static double CalculateTotalPrice(int qte, double prixU){
         
         double prix= qte*prixU;
         return prix;

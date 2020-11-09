@@ -7,17 +7,15 @@ package lamabookstore;
 
 import java.util.Scanner;
 
-/**
- *
- * @author chokri
- */
+
+ 
 public class LamaBookstore {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Utility u = new Utility();
+
 
         Scanner sc = new Scanner(System.in);
         System.out.print("Veuillez saisir la quantité : ");
@@ -27,7 +25,7 @@ public class LamaBookstore {
         double p = scanner.nextInt();
         
         
-        System.out.print("le prix totale est  "+u.CalculateTotalPrice(qt, p)+"  (DT)");
+        System.out.print("le prix totale est  "+Utility.CalculateTotalPrice(qt, p)+"  (DT)");
     }
 
 }
