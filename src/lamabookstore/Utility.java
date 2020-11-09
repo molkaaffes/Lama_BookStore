@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bookstore.Models;
+package lamabookstore;
 
 /**
  *
- * @author chaym
+ * @author chokri
  */
-public class Categorie {
-    String name;
-    String datepub;
+public class Utility {
+    public  double CalculateTotalPrice(int qte, double prixU){
+        
+        double prix= qte*prixU;
+        return prix;
+    }
 }
