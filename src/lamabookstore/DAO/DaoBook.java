@@ -24,7 +24,8 @@ import java.util.logging.Logger;
 //import java.util.Date;
 import java.util.Date;
 import java.util.List;
-
+import javax.swing.JOptionPane;
+import jdk.nashorn.internal.objects.NativeError;
 
 public class DaoBook {
 
@@ -42,18 +43,18 @@ public class DaoBook {
             stat.setDouble(2, book.getPrice());
             stat.setString(3, book.getAuthor());
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             java.util.Date date = sdf.parse(book.getReleaseDate().toString());
             stat.setDate(4, (new java.sql.Date(date.getTime())));
             stat.executeUpdate();
-           
+            System.out.print("insertion effectuée! \n");
+
         } catch (SQLException ex) {
             Logger.getLogger(DaoBook.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
             Logger.getLogger(DaoBook.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        System.out.print("insertion effectuée! \n");
 
     }
 
@@ -68,7 +69,6 @@ public class DaoBook {
             boolean encore = résultats.next();
             List<Book> listbooks = new ArrayList();
             while (encore) {
-
                 Book newbook = new Book();
                 newbook.setId(résultats.getInt("id"));
                 newbook.setTitle(résultats.getString("title"));
@@ -85,6 +85,37 @@ public class DaoBook {
             System.out.println("vermegalternant.MyProg.Insert()" + e);
             return null;
         }
+
+    }
+
+    public static void delete(Connection conn, int id) {
+        try {
+            String delete = "DELETE from book WHERE id= ?";
+            PreparedStatement prepareddelete = conn.prepareStatement(delete);
+            prepareddelete.setInt(1, id);
+            prepareddelete.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getStackTrace());
+        }
+        JOptionPane.showMessageDialog(null, "book deleted!");
+    }
+
+    public static void update(Connection conn, int id, Book book) {
+        try {
+
+            String uquery = "update book set title = ?  , price=? , author = ? where id = ?";
+            PreparedStatement preparedStmt = conn.prepareStatement(uquery);
+            preparedStmt.setString(1, book.getTitle());
+            preparedStmt.setDouble(2, book.getPrice());
+            preparedStmt.setString(3, book.getAuthor());
+            preparedStmt.setInt(4, book.getId());
+            //  preparedStmt.setDate(4,new java.sql.Date(book.getReleaseDate().getTime()));
+            int resultupdate = preparedStmt.executeUpdate();
+            System.out.println(resultupdate);
+        } catch (SQLException ex) {
+            System.out.println(ex.getStackTrace());
+        }
+        JOptionPane.showMessageDialog(null, "book updated!");
 
     }
 }
