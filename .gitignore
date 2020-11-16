@@ -1,12 +1,1 @@
-#ant specific
-dist/
-build/
-
-#netbeans specific
-core
-nbproject/*
-
-
-#java specific
-*.class
 
