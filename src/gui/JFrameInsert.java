@@ -59,7 +59,7 @@ public class JFrameInsert extends javax.swing.JFrame {
 
         label1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         label1.setForeground(new java.awt.Color(102, 0, 102));
-        label1.setText("Bookstore");
+        label1.setText("LAMA_Bookstore");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_book_shelf_64px.png"))); // NOI18N
 
@@ -71,8 +71,8 @@ public class JFrameInsert extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(578, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,6 +198,9 @@ public class JFrameInsert extends javax.swing.JFrame {
             java.util.Date date = sdf.parse(releaseDate.getText());
             stat.setDate(4, (new java.sql.Date(date.getTime())));
             stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Insertion effectuée!");
+            this.setVisible(false);
+             new JFrameList().setVisible(true);
             /**
              * ****************************
              */
@@ -215,9 +218,7 @@ public class JFrameInsert extends javax.swing.JFrame {
             System.out.println(e.getStackTrace());
         }
 
-        System.out.print("insertion effectuée! \n");
 
-// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

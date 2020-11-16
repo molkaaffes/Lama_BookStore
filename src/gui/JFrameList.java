@@ -90,7 +90,7 @@ public class JFrameList extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 0, 102));
-        jLabel1.setText("Bookstore");
+        jLabel1.setText("LAMA_Bookstore");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_book_shelf_64px.png"))); // NOI18N
 
@@ -102,7 +102,7 @@ public class JFrameList extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(

@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/chokri/Desktop/ALTERNANCE/GIT/Lama_BookStore/src/lamabookstore/Utility.java</file>
-            <file>file:/C:/Users/chokri/Desktop/ALTERNANCE/GIT/Lama_BookStore/src/lamabookstore/entities/Book.java</file>
-            <file>file:/C:/Users/chokri/Desktop/ALTERNANCE/GIT/Lama_BookStore/src/lamabookstore/LamaBookstore.java</file>
-            <file>file:/C:/Users/chokri/Desktop/ALTERNANCE/GIT/Lama_BookStore/src/lamabookstore/DAO/DaoBook.java</file>
-            <file>file:/C:/Users/chokri/Desktop/ALTERNANCE/GIT/Lama_BookStore/src/gui/JFrameInsert.java</file>
+            <file>file:/D:/projects/Lama_BookStore/src/gui/JFrameInsert.java</file>
+            <file>file:/D:/projects/Lama_BookStore/src/lamabookstore/LamaBookstore.java</file>
         </group>
     </open-files>
 </project-private>
