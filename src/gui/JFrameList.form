@@ -93,11 +93,11 @@
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="240" max="-2" attributes="0"/>
-                      <EmptySpace pref="561" max="32767" attributes="0"/>
+                      <Component id="jLabel1" min="-2" pref="332" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="797" max="32767" attributes="0"/>
                       <Component id="btn_exitList" min="-2" pref="46" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                   </Group>
