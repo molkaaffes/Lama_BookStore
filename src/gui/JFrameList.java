@@ -85,12 +85,14 @@ public class JFrameList extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        exitList = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(71, 120, 197));
 
+        jTable1.setBackground(new java.awt.Color(71, 120, 197));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -164,7 +166,7 @@ public class JFrameList extends javax.swing.JFrame {
                 .addComponent(orderbook)
                 .addGap(46, 46, 46)
                 .addComponent(bookabout)
-                .addContainerGap(281, Short.MAX_VALUE))
+                .addContainerGap(279, Short.MAX_VALUE))
         );
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -177,6 +179,13 @@ public class JFrameList extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_copyright_18px.png"))); // NOI18N
         jLabel3.setText("All rights reserved, LAMA, 2020");
+
+        exitList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_exit_sign_25px.png"))); // NOI18N
+        exitList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                exitListMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -192,7 +201,7 @@ public class JFrameList extends javax.swing.JFrame {
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 38, Short.MAX_VALUE)
+                        .addGap(0, 37, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -202,7 +211,9 @@ public class JFrameList extends javax.swing.JFrame {
                                     .addComponent(jButton1))
                                 .addGap(51, 51, 51))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(exitList)
+                                    .addComponent(jLabel3))
                                 .addGap(23, 23, 23))))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -214,7 +225,9 @@ public class JFrameList extends javax.swing.JFrame {
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(exitList)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(130, 130, 130)
@@ -248,7 +261,7 @@ public class JFrameList extends javax.swing.JFrame {
 
         Connection conn;
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
             DaoBook.delete(conn, jTable1.getSelectedRow());
             //jTable1.getModel().fireTableDataChanged();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -267,7 +280,7 @@ public class JFrameList extends javax.swing.JFrame {
         try {
             Book book = new Book();
 
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
             book.setId(Integer.parseInt(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0).toString()));
             book.setTitle(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1).toString());
             book.setPrice(Double.parseDouble(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 2).toString()));
@@ -294,6 +307,10 @@ public class JFrameList extends javax.swing.JFrame {
         this.setVisible(false);
              new JFrameAboutUs().setVisible(true);
     }//GEN-LAST:event_bookaboutMousePressed
+
+    private void exitListMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitListMousePressed
+        System.exit(0);
+    }//GEN-LAST:event_exitListMousePressed
 
     /**
      * @param args the command line arguments
@@ -332,6 +349,7 @@ public class JFrameList extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bookabout;
+    private javax.swing.JLabel exitList;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel3;
