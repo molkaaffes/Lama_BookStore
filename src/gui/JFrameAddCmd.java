@@ -9,9 +9,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import lamabookstore.DAO.DaoBook;
+import lamabookstore.DAO.DaoCommande;
 import lamabookstore.entities.Book;
 
 /**
@@ -26,7 +32,7 @@ public class JFrameAddCmd extends javax.swing.JFrame {
     public JFrameAddCmd() {
         initComponents();
         showBooks();
-       
+
     }
 
     /**
@@ -52,6 +58,9 @@ public class JFrameAddCmd extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         exitCmd = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        totalprice = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -82,15 +91,15 @@ public class JFrameAddCmd extends javax.swing.JFrame {
 
         commandTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+                {null, null, null, null}
             },
             new String [] {
-                "Id Client", "Id Command", "Date Command", "Command Price", "LB"
+                "Client", "Book Title", "Command Date", "Command Price"
             }
         ));
         jScrollPane2.setViewportView(commandTable);
 
-        Add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_insert_credit_card_50px.png"))); // NOI18N
+        Add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_add_25px.png"))); // NOI18N
         Add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddActionPerformed(evt);
@@ -167,6 +176,24 @@ public class JFrameAddCmd extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_copyright_18px.png"))); // NOI18N
         jLabel3.setText("All rights reserved, LAMA, 2020");
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_approval_25px.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        totalprice.setText("TotalPrice");
+        totalprice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalpriceActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel1.setText("Total Price :");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -189,7 +216,7 @@ public class JFrameAddCmd extends javax.swing.JFrame {
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(107, 107, 107)
                         .addComponent(exitCmd)
-                        .addGap(51, 51, 51))
+                        .addGap(54, 54, 54))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,31 +224,46 @@ public class JFrameAddCmd extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addGap(32, 32, 32))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65))))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Add))
+                                .addGap(65, 65, 65))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(39, 39, 39)
+                                .addComponent(totalprice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(272, 272, 272))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(exitCmd, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(292, 292, 292)
-                        .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(exitCmd, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(7, 7, 7)))
-                        .addGap(72, 72, 72)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                        .addGap(60, 60, 60)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalprice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(22, 22, 22)
                 .addComponent(jLabel3)
                 .addContainerGap())
         );
@@ -233,7 +275,7 @@ public class JFrameAddCmd extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -245,22 +287,53 @@ public class JFrameAddCmd extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
-        //  showCmd();
+        showCmd();
     }//GEN-LAST:event_AddActionPerformed
 
     private void bookorderMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookorderMousePressed
         this.setVisible(false);
-             new JFrameList().setVisible(true);
+        new JFrameList().setVisible(true);
     }//GEN-LAST:event_bookorderMousePressed
 
     private void aboutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutMousePressed
         this.setVisible(false);
-             new JFrameAboutUs().setVisible(true);
+        new JFrameAboutUs().setVisible(true);
     }//GEN-LAST:event_aboutMousePressed
 
     private void exitCmdMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitCmdMousePressed
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_exitCmdMousePressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        DefaultTableModel modelcmd = (DefaultTableModel) bookTable.getModel();
+        List<Book> listbook = null;
+        for (int i = 0; i < bookTable.getRowCount(); i++) {
+            if (bookTable.getValueAt(i, 5) != null) // System.out.println("gui.JFrameAddCmd.showCmd()"+ bookTable.getValueAt(i, 5).equals(true));
+            {
+                if (bookTable.getValueAt(i, 5).equals(true)) {
+                    Book b = new Book();
+                    b.setId((int)bookTable.getValueAt(i, 0));
+                    b.setTitle((String)bookTable.getValueAt(i, 1));
+                    b.setPrice((int)bookTable.getValueAt(i, 2));
+                    b.setAuthor((String)bookTable.getValueAt(i, 3));
+                    listbook.add(b);
+                }
+            }
+        }
+        Connection conn;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
+             DaoCommande.addCommande(listbook, 1, conn);
+             JOptionPane.showMessageDialog(null, "Commande added!");
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrameAddCmd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void totalpriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalpriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalpriceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,6 +377,8 @@ public class JFrameAddCmd extends javax.swing.JFrame {
     private javax.swing.JLabel bookorder;
     private javax.swing.JTable commandTable;
     private javax.swing.JLabel exitCmd;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -312,11 +387,15 @@ public class JFrameAddCmd extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField totalprice;
     // End of variables declaration//GEN-END:variables
 
     private void showBooks() {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+            DefaultTableModel dm = (DefaultTableModel) bookTable.getModel();
+            dm.getDataVector().removeAllElements();
+            revalidate();
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
             ArrayList<Book> list = (ArrayList<Book>) DaoBook.listBook(conn);
             DefaultTableModel model = (DefaultTableModel) bookTable.getModel();
             Object[] row = new Object[5];
@@ -334,11 +413,32 @@ public class JFrameAddCmd extends javax.swing.JFrame {
     }
 
     private void showCmd() {
+        DefaultTableModel dm = (DefaultTableModel) commandTable.getModel();
+        dm.getDataVector().removeAllElements();
+        revalidate();
+//        int numRows = commandTable.getRowCount();
+//        for (int i =0; i <numRows; i++) {
+//            commandTable.remove(i);
+//        }
+        DefaultTableModel modelcmd = (DefaultTableModel) commandTable.getModel();
+        Double prixtotal = 0.;
         for (int i = 0; i < bookTable.getRowCount(); i++) {
-           System.out.println("gui.JFrameAddCmd.showCmd()"+ bookTable.getValueAt(i, 5).equals(true));
-//            if (bookTable.getValueAt(i, 5).equals(true)) {
-//                System.out.println("gui.JFrameAddCmd.showCmd()");
-//            }
+            if (bookTable.getValueAt(i, 5) != null) // System.out.println("gui.JFrameAddCmd.showCmd()"+ bookTable.getValueAt(i, 5).equals(true));
+            {
+                if (bookTable.getValueAt(i, 5).equals(true)) {
+                    Object[] row = new Object[5];
+                    row[0] = "Molka";
+                    row[1] = bookTable.getValueAt(i, 1);
+                    row[2] = new Date();
+                    row[3] = bookTable.getValueAt(i, 2);
+                    row[4] = 0;
+                    modelcmd.addRow(row);
+                    // prixtotal+=(Double)bookTable.getValueAt(i, 1);
+                } else {
+                    continue;
+                }
+            }
+            totalprice.setText(String.valueOf(prixtotal));
 
         }
 
