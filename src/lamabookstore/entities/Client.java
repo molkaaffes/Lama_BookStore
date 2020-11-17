@@ -5,55 +5,21 @@
  */
 package lamabookstore.entities;
 
-import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author Molka
- */
-@Entity
-@Table(name = "clients")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c")
-    , @NamedQuery(name = "Client.findById", query = "SELECT c FROM Client c WHERE c.id = :id")
-    , @NamedQuery(name = "Client.findByNom", query = "SELECT c FROM Client c WHERE c.nom = :nom")
-    , @NamedQuery(name = "Client.findByPrenom", query = "SELECT c FROM Client c WHERE c.prenom = :prenom")
-    , @NamedQuery(name = "Client.findByEmail", query = "SELECT c FROM Client c WHERE c.email = :email")
-    , @NamedQuery(name = "Client.findByTel", query = "SELECT c FROM Client c WHERE c.tel = :tel")
-    , @NamedQuery(name = "Client.findByAdresse", query = "SELECT c FROM Client c WHERE c.adresse = :adresse")})
-public class Client implements Serializable {
+public class Client  {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
+   
     private Integer id;
-    @Basic(optional = false)
-    @Column(name = "nom")
+    
     private String nom;
-    @Basic(optional = false)
-    @Column(name = "prenom")
+    
     private String prenom;
-    @Basic(optional = false)
-    @Column(name = "email")
+    
     private String email;
-    @Basic(optional = false)
-    @Column(name = "tel")
+    
     private String tel;
-    @Basic(optional = false)
-    @Column(name = "adresse")
+   
     private String adresse;
 
     public Client() {
