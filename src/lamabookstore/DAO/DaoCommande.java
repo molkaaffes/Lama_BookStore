@@ -35,7 +35,7 @@ public class DaoCommande {
 
         try {
             for (Book book : listBook) {
-                stat = conn.prepareStatement("insert into commandes " + " (qte,id_produit,id_client,prix_unit,date_commande)" + " values (?,?,?,?,?)");
+                stat = conn.prepareStatement("insert into commandes " + " (qte,idproduit,idclient,prixUnit,dateCommande)" + " values (?,?,?,?,?)");
                 stat.setInt(1, 1);
                 stat.setInt(2, book.getId());
                 stat.setInt(3, id_client);
@@ -54,7 +54,7 @@ public class DaoCommande {
 
     public static List<Commande> listCommandes(Connection conn, int id_client) {
         try {
-            String requete = "SELECT * FROM Commandes where id_client="+id_client+"";
+            String requete = "SELECT * FROM Commandes where idclient="+id_client+"";
             Statement stmt = conn.createStatement();
             ResultSet résultats = stmt.executeQuery(requete);
 
@@ -65,11 +65,11 @@ public class DaoCommande {
             while (encore) {
                 Commande newCommande = new Commande();
                 newCommande.setId(résultats.getInt("id"));
-                newCommande.setIdClient(résultats.getInt("id_client"));
-                newCommande.setIdProduit(résultats.getInt("id_produit"));
-                newCommande.setPrixUnit(résultats.getInt("prix_unit"));
+                newCommande.setIdClient(résultats.getInt("idClient"));
+                newCommande.setIdProduit(résultats.getInt("idProduit"));
+                newCommande.setPrixUnit(résultats.getInt("prixUnit"));
                 newCommande.setQte(résultats.getInt("qte"));
-                Date date = résultats.getDate("date_commande");
+                Date date = résultats.getDate("dateCommande");
                 newCommande.setDateCommande(date);
                 listCommande.add(newCommande);
                 encore = résultats.next();

@@ -210,7 +210,7 @@ public class JFrameAddCmd extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -274,9 +274,7 @@ public class JFrameAddCmd extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,7 +304,7 @@ public class JFrameAddCmd extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DefaultTableModel modelcmd = (DefaultTableModel) bookTable.getModel();
-        List<Book> listbook = null;
+        List<Book> listbook = new ArrayList();
         for (int i = 0; i < bookTable.getRowCount(); i++) {
             if (bookTable.getValueAt(i, 5) != null) // System.out.println("gui.JFrameAddCmd.showCmd()"+ bookTable.getValueAt(i, 5).equals(true));
             {
@@ -314,7 +312,7 @@ public class JFrameAddCmd extends javax.swing.JFrame {
                     Book b = new Book();
                     b.setId((int)bookTable.getValueAt(i, 0));
                     b.setTitle((String)bookTable.getValueAt(i, 1));
-                    b.setPrice((int)bookTable.getValueAt(i, 2));
+                    b.setPrice((Double)bookTable.getValueAt(i, 2));
                     b.setAuthor((String)bookTable.getValueAt(i, 3));
                     listbook.add(b);
                 }
@@ -322,7 +320,7 @@ public class JFrameAddCmd extends javax.swing.JFrame {
         }
         Connection conn;
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
+              conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
              DaoCommande.addCommande(listbook, 1, conn);
              JOptionPane.showMessageDialog(null, "Commande added!");
         } catch (SQLException ex) {
@@ -395,7 +393,7 @@ public class JFrameAddCmd extends javax.swing.JFrame {
             DefaultTableModel dm = (DefaultTableModel) bookTable.getModel();
             dm.getDataVector().removeAllElements();
             revalidate();
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
+           Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
             ArrayList<Book> list = (ArrayList<Book>) DaoBook.listBook(conn);
             DefaultTableModel model = (DefaultTableModel) bookTable.getModel();
             Object[] row = new Object[5];
