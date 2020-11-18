@@ -47,7 +47,7 @@ public class JFrameList extends javax.swing.JFrame {
 //    }
     public void show_book() {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore", "root", "admin");
             ArrayList<Book> list = (ArrayList<Book>) DaoBook.listBook(conn);
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             Object[] row = new Object[5];
@@ -261,7 +261,7 @@ public class JFrameList extends javax.swing.JFrame {
 
         Connection conn;
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore", "root", "admin");
             DaoBook.delete(conn, jTable1.getSelectedRow());
             //jTable1.getModel().fireTableDataChanged();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -280,7 +280,7 @@ public class JFrameList extends javax.swing.JFrame {
         try {
             Book book = new Book();
 
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore", "root", "admin");
             book.setId(Integer.parseInt(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0).toString()));
             book.setTitle(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1).toString());
             book.setPrice(Double.parseDouble(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 2).toString()));

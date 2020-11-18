@@ -21,7 +21,7 @@ public class LamaBookstore {
      */
     public static void main(String[] args) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore", "root", "admin");
             System.out.println(conn);
 
              Scanner scanner = new Scanner(System.in);
