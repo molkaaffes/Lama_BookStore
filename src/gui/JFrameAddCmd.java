@@ -6,7 +6,6 @@
 package gui;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,8 +13,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import lamabook.conx.Connect;
 import lamabookstore.DAO.DaoBook;
 import lamabookstore.DAO.DaoCommande;
 import lamabookstore.entities.Book;
@@ -320,8 +319,8 @@ public class JFrameAddCmd extends javax.swing.JFrame {
         }
         Connection conn;
         try {
-              conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
-             DaoCommande.addCommande(listbook, 1, conn);
+           //   conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+             DaoCommande.addCommande(listbook, 1, Connect.connectMe());
              JOptionPane.showMessageDialog(null, "Commande added!");
         } catch (SQLException ex) {
             Logger.getLogger(JFrameAddCmd.class.getName()).log(Level.SEVERE, null, ex);
@@ -393,8 +392,8 @@ public class JFrameAddCmd extends javax.swing.JFrame {
             DefaultTableModel dm = (DefaultTableModel) bookTable.getModel();
             dm.getDataVector().removeAllElements();
             revalidate();
-           Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
-            ArrayList<Book> list = (ArrayList<Book>) DaoBook.listBook(conn);
+         //  Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+            ArrayList<Book> list = (ArrayList<Book>) DaoBook.listBook(Connect.connectMe());
             DefaultTableModel model = (DefaultTableModel) bookTable.getModel();
             Object[] row = new Object[5];
             for (Book book : list) {
@@ -414,14 +413,12 @@ public class JFrameAddCmd extends javax.swing.JFrame {
         DefaultTableModel dm = (DefaultTableModel) commandTable.getModel();
         dm.getDataVector().removeAllElements();
         revalidate();
-//        int numRows = commandTable.getRowCount();
-//        for (int i =0; i <numRows; i++) {
-//            commandTable.remove(i);
-//        }
+
         DefaultTableModel modelcmd = (DefaultTableModel) commandTable.getModel();
-        Double prixtotal = 0.;
+        DefaultTableModel modelbook = (DefaultTableModel) bookTable.getModel();
+        Double prixtotal = 0.0;
         for (int i = 0; i < bookTable.getRowCount(); i++) {
-            if (bookTable.getValueAt(i, 5) != null) // System.out.println("gui.JFrameAddCmd.showCmd()"+ bookTable.getValueAt(i, 5).equals(true));
+            if (bookTable.getValueAt(i, 5) != null) 
             {
                 if (bookTable.getValueAt(i, 5).equals(true)) {
                     Object[] row = new Object[5];
@@ -431,7 +428,8 @@ public class JFrameAddCmd extends javax.swing.JFrame {
                     row[3] = bookTable.getValueAt(i, 2);
                     row[4] = 0;
                     modelcmd.addRow(row);
-                    // prixtotal+=(Double)bookTable.getValueAt(i, 1);
+                   
+                     prixtotal+=Double.parseDouble(modelbook.getValueAt(i,2).toString());;
                 } else {
                     continue;
                 }

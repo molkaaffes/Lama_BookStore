@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import static jdk.nashorn.internal.runtime.Debug.id;
+import lamabook.conx.Connect;
 import lamabookstore.DAO.DaoBook;
 import lamabookstore.entities.Book;
 
@@ -47,8 +48,8 @@ public class JFrameList extends javax.swing.JFrame {
 //    }
     public void show_book() {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
-            ArrayList<Book> list = (ArrayList<Book>) DaoBook.listBook(conn);
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+            ArrayList<Book> list = (ArrayList<Book>) DaoBook.listBook(Connect.connectMe());
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             Object[] row = new Object[5];
             for (Book book : list) {
@@ -261,8 +262,8 @@ public class JFrameList extends javax.swing.JFrame {
 
         Connection conn;
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
-            DaoBook.delete(conn, jTable1.getSelectedRow());
+      //      conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+            DaoBook.delete(Connect.connectMe(), jTable1.getSelectedRow());
             //jTable1.getModel().fireTableDataChanged();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             ((DefaultTableModel) jTable1.getModel()).removeRow(jTable1.getSelectedRow());
@@ -276,11 +277,11 @@ public class JFrameList extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Connection conn;
+        
         try {
             Book book = new Book();
 
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+        //    conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
             book.setId(Integer.parseInt(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0).toString()));
             book.setTitle(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1).toString());
             book.setPrice(Double.parseDouble(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 2).toString()));
@@ -288,7 +289,7 @@ public class JFrameList extends javax.swing.JFrame {
 //            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 //            String stringDate = jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 3).toString();
 //            book.setReleaseDate(sdf.parse(stringDate));
-            DaoBook.update(conn, jTable1.getSelectedRow(), book);
+            DaoBook.update(Connect.connectMe(), jTable1.getSelectedRow(), book);
         } catch (SQLException ex) {
             Logger.getLogger(JFrameList.class.getName()).log(Level.SEVERE, null, ex);
       }// catch (ParseException ex) {

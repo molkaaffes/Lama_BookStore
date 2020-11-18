@@ -11,14 +11,12 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import lamabook.conx.Connect;
 import lamabookstore.entities.Book;
 import lamabookstore.entities.Commande;
 
@@ -35,7 +33,7 @@ public class DaoCommande {
 
         try {
             for (Book book : listBook) {
-                stat = conn.prepareStatement("insert into commandes " + " (qte,idproduit,idclient,prixUnit,dateCommande)" + " values (?,?,?,?,?)");
+                stat = Connect.connectMe().prepareStatement("insert into commandes " + " (qte,idproduit,idclient,prixUnit,dateCommande)" + " values (?,?,?,?,?)");
                 stat.setInt(1, 1);
                 stat.setInt(2, book.getId());
                 stat.setInt(3, id_client);
@@ -52,10 +50,10 @@ public class DaoCommande {
 
     }
 
-    public static List<Commande> listCommandes(Connection conn, int id_client) {
+    public static List<Commande> listCommandes(int id_client) {
         try {
             String requete = "SELECT * FROM Commandes where idclient="+id_client+"";
-            Statement stmt = conn.createStatement();
+            Statement stmt = Connect.connectMe().createStatement();
             ResultSet résultats = stmt.executeQuery(requete);
 
             ResultSetMetaData rsmd = résultats.getMetaData();

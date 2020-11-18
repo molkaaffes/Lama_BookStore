@@ -15,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import javax.swing.JOptionPane;
+import lamabook.conx.Connect;
 import lamabookstore.DAO.DaoBook;
 import lamabookstore.entities.Book;
 
@@ -268,13 +269,13 @@ public class JFrameInsert extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
             /**
              * *********************
              */
              PreparedStatement stat;
 
-            stat = conn.prepareStatement("insert into book " + " (title,price, author,releaseDate)" + " values (?, ? ,?,?)");
+            stat = Connect.connectMe().prepareStatement("insert into book " + " (title,price, author,releaseDate)" + " values (?, ? ,?,?)");
             stat.setString(1, title.getText());
             stat.setDouble(2, Double.parseDouble(price.getText()));
             stat.setString(3, author.getText());

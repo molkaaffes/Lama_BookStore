@@ -4,13 +4,12 @@
  * and open the template in the editor.
  */
 package lamabookstore;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
+ 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Scanner;
+import lamabook.conx.Connect;
 import lamabookstore.DAO.DaoBook;
 import lamabookstore.entities.Book;
 
@@ -21,7 +20,7 @@ public class LamaBookstore {
      */
     public static void main(String[] args) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+        //    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
             System.out.println(conn);
 
              Scanner scanner = new Scanner(System.in);
@@ -57,10 +56,10 @@ public class LamaBookstore {
                             java.util.Date date = sdf.parse(scanner.nextLine());
 
                             myBook.setReleaseDate(new java.sql.Date(date.getTime()));
-                            DaoBook.addBook(myBook, conn);
+                            DaoBook.addBook(myBook, Connect.connectMe());
                             break;
                         case 2:
-                            List<Book> myList = DaoBook.listBook(conn);
+                            List<Book> myList = DaoBook.listBook(Connect.connectMe());
                             for (Book book : myList) {
                                 System.out.println(book.toString());
                             }

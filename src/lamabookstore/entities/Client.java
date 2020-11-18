@@ -21,6 +21,8 @@ public class Client  {
     private String tel;
    
     private String adresse;
+    
+    private String pwd;
 
     public Client() {
     }
@@ -84,6 +86,14 @@ public class Client  {
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
     @Override
