@@ -14,6 +14,15 @@ public class Book {
     String title ,author ;
     double price ;
     Date releaseDate;
+    byte[] image;
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -57,13 +66,14 @@ public class Book {
         return price;
     }
 
- 
-
     @Override
     public String toString() {
-        return "Book{" + "id=" + id + ", title=" + title + ", author=" + author + ", price=" + price + ", releaseDate=" + releaseDate + '}';
+        return "Book{" + "id=" + id + ", title=" + title + ", author=" + author + ", price=" + price + ", releaseDate=" + releaseDate + ", image=" + image + '}';
     }
 
+ 
+
+  
     
     
    

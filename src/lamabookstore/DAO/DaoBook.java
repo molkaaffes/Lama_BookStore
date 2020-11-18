@@ -31,6 +31,7 @@ public class DaoBook {
 
     public DateFormat dateFormat;
     java.util.Date date;
+    
 
     public static void addBook(Book book, Connection conn) {
         //   Connection conn ;
@@ -38,10 +39,12 @@ public class DaoBook {
         PreparedStatement stat;
 
         try {
-            stat = conn.prepareStatement("insert into book " + " (title,price, author,releaseDate)" + " values (?, ? ,?,?)");
+            stat = conn.prepareStatement("insert into book " + " (title,price, author,releaseDate,image)" + " values (?, ? ,?,?,?)");
             stat.setString(1, book.getTitle());
             stat.setDouble(2, book.getPrice());
             stat.setString(3, book.getAuthor());
+            
+            stat.setBytes(5, book.getImage());
 
             //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -58,7 +61,7 @@ public class DaoBook {
 
     }
 
-    public static List<Book> listBook(Connection conn) {
+    public static ArrayList<Book> listBook(Connection conn) {
         try {
             String requete = "SELECT * FROM book";
             Statement stmt = conn.createStatement();
@@ -67,7 +70,7 @@ public class DaoBook {
             ResultSetMetaData rsmd = résultats.getMetaData();
             int nbCols = rsmd.getColumnCount();
             boolean encore = résultats.next();
-            List<Book> listbooks = new ArrayList();
+            ArrayList<Book> listbooks = new ArrayList<>();
             while (encore) {
                 Book newbook = new Book();
                 newbook.setId(résultats.getInt("id"));
@@ -76,6 +79,7 @@ public class DaoBook {
                 newbook.setAuthor(résultats.getString("author"));
                 Date date = résultats.getDate("releaseDate");
                 newbook.setReleaseDate(date);
+                newbook.setImage(résultats.getBytes("image"));
                 listbooks.add(newbook);
                 encore = résultats.next();
             }
