@@ -28,6 +28,7 @@ public class DaoClient {
             Statement stmt = Connect.connectMe().createStatement();
             ResultSet résultats = stmt.executeQuery(requete);
             ResultSetMetaData rsmd = résultats.getMetaData();
+            Boolean test=résultats.next();
            Client user=new Client();
            user.setId(résultats.getInt("id"));
            user.setNom(résultats.getString("nom"));
@@ -37,7 +38,7 @@ public class DaoClient {
            user.setAdresse(résultats.getString("adresse"));
            user.setPwd(résultats.getString("pwd"));
            Connect.setUserConnect(user);
-                return résultats.next();
+                return test;
           
         } catch (SQLException ex) {
             Logger.getLogger(DaoClient.class.getName()).log(Level.SEVERE, null, ex);

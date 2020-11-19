@@ -16,11 +16,11 @@ ALTER TABLE `clients`
 
 CREATE TABLE `commandes` (
   `id` int(11) NOT NULL,
-  `date_commande` date NOT NULL,
+  `datecommande` date NOT NULL,
   `qte` int(11) NOT NULL,
-  `id_produit` int(11) NOT NULL,
-  `id_client` int(11) NOT NULL,
-  `prix_unit` int(11) NOT NULL
+  `idproduit` int(11) NOT NULL,
+  `idclient` int(11) NOT NULL,
+  `prixunit` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -31,3 +31,6 @@ ALTER TABLE `commandes`
 ALTER TABLE `commandes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
+
+
+ALTER TABLE 'clients' ADD pwd varchar(10) NOT NULL;

@@ -90,7 +90,7 @@ public class JFrameInscri extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_book_shelf_50px.png"))); // NOI18N
 
-        exitInsci.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_exit_sign_25px.png"))); // NOI18N
+        exitInsci.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_exit_sign_35px.png"))); // NOI18N
         exitInsci.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 exitInsciMousePressed(evt);

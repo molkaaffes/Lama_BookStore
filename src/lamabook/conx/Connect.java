@@ -21,7 +21,8 @@ public static Client userConnect ;
     public static Connection connectMe() throws SQLException {
         
             // Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
+          //  Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore", "root", "admin");
+              Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
             return conn;
         
     }

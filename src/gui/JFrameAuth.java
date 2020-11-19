@@ -81,7 +81,7 @@ public class JFrameAuth extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_book_shelf_50px.png"))); // NOI18N
 
-        exitAuth.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_exit_sign_25px.png"))); // NOI18N
+        exitAuth.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_exit_sign_35px.png"))); // NOI18N
         exitAuth.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 exitAuthMousePressed(evt);
@@ -177,7 +177,7 @@ public class JFrameAuth extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     if(DaoClient.Authentification(login.getText(), jpassword.getText()))
         { this.setVisible(false);
-             new JFrameAboutUs().setVisible(true);}
+             new ListCmd().setVisible(true);}
     else
         JOptionPane.showMessageDialog(null, "veuillez vérifier votre login et mot de passe");
     }//GEN-LAST:event_jButton1ActionPerformed

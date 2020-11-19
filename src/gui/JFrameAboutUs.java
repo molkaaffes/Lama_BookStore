@@ -35,6 +35,7 @@ public class JFrameAboutUs extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         bookabout = new javax.swing.JLabel();
         orderabout = new javax.swing.JLabel();
+        historyOrdersFromAboutus = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         exitAbout = new javax.swing.JLabel();
@@ -74,11 +75,20 @@ public class JFrameAboutUs extends javax.swing.JFrame {
         });
 
         orderabout.setForeground(new java.awt.Color(240, 240, 240));
-        orderabout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_order_history_25px.png"))); // NOI18N
+        orderabout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_purchase_order_25px.png"))); // NOI18N
         orderabout.setText("Order");
         orderabout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 orderaboutMousePressed(evt);
+            }
+        });
+
+        historyOrdersFromAboutus.setForeground(new java.awt.Color(240, 240, 240));
+        historyOrdersFromAboutus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_order_history_25px.png"))); // NOI18N
+        historyOrdersFromAboutus.setText("Orders History");
+        historyOrdersFromAboutus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                historyOrdersFromAboutusMousePressed(evt);
             }
         });
 
@@ -89,12 +99,17 @@ public class JFrameAboutUs extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(orderabout, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 8, Short.MAX_VALUE))
-                    .addComponent(bookabout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(55, 55, 55))
+                        .addComponent(historyOrdersFromAboutus)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(orderabout, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 8, Short.MAX_VALUE))
+                            .addComponent(bookabout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(55, 55, 55))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,9 +118,11 @@ public class JFrameAboutUs extends javax.swing.JFrame {
                 .addComponent(bookabout, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(orderabout)
-                .addGap(46, 46, 46)
+                .addGap(39, 39, 39)
                 .addComponent(jLabel3)
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(historyOrdersFromAboutus)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_exit_without_update_30px.png"))); // NOI18N
@@ -114,7 +131,7 @@ public class JFrameAboutUs extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(102, 0, 102));
         jLabel1.setText("Hello ! Meet the LAMA Bookstore TEAM");
 
-        exitAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_exit_sign_25px.png"))); // NOI18N
+        exitAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_exit_sign_35px.png"))); // NOI18N
         exitAbout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 exitAboutMousePressed(evt);
@@ -154,10 +171,13 @@ public class JFrameAboutUs extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(exitAbout))
-                                .addGap(87, 87, 87)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(87, 87, 87))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(exitAbout)
+                                        .addGap(57, 57, 57)))
                                 .addComponent(jLabel9)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -185,7 +205,7 @@ public class JFrameAboutUs extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addContainerGap())
         );
@@ -217,6 +237,11 @@ public class JFrameAboutUs extends javax.swing.JFrame {
     private void exitAboutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitAboutMousePressed
         System.exit(0);
     }//GEN-LAST:event_exitAboutMousePressed
+
+    private void historyOrdersFromAboutusMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historyOrdersFromAboutusMousePressed
+        this.setVisible(false);
+        new ListCmd().setVisible(true);
+    }//GEN-LAST:event_historyOrdersFromAboutusMousePressed
 
     /**
      * @param args the command line arguments
@@ -257,6 +282,7 @@ public class JFrameAboutUs extends javax.swing.JFrame {
     private javax.swing.JTextArea AboutUsText;
     private javax.swing.JLabel bookabout;
     private javax.swing.JLabel exitAbout;
+    private javax.swing.JLabel historyOrdersFromAboutus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

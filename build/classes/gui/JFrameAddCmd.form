@@ -57,7 +57,7 @@
                                   <Component id="jLabel2" min="-2" pref="196" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace pref="77" max="32767" attributes="0"/>
+                                  <EmptySpace pref="67" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jScrollPane2" min="-2" pref="496" max="-2" attributes="0"/>
                                       <Component id="jScrollPane1" min="-2" pref="496" max="-2" attributes="0"/>
@@ -274,14 +274,22 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="about" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel4" min="-2" pref="85" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="historyOrdersFromorder" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
-                          <Component id="bookorder" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="about" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel4" min="-2" pref="85" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="bookorder" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -292,8 +300,10 @@
                       <Component id="bookorder" min="-2" pref="41" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="about" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="historyOrdersFromorder" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -345,6 +355,20 @@
                 <Property name="text" type="java.lang.String" value="Order"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="historyOrdersFromorder">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f0" green="f0" red="f0" type="rgb"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/gui/images/icons8_order_history_25px.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Orders History"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="historyOrdersFromorderMousePressed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -368,7 +392,7 @@
         <Component class="javax.swing.JLabel" name="exitCmd">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/gui/images/icons8_exit_sign_25px.png"/>
+              <Image iconType="3" name="/gui/images/icons8_exit_sign_35px.png"/>
             </Property>
           </Properties>
           <Events>

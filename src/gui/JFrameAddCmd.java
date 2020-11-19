@@ -53,6 +53,7 @@ public class JFrameAddCmd extends javax.swing.JFrame {
         about = new javax.swing.JLabel();
         bookorder = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        historyOrdersFromorder = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         exitCmd = new javax.swing.JLabel();
@@ -131,6 +132,15 @@ public class JFrameAddCmd extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_order_history_25px.png"))); // NOI18N
         jLabel4.setText("Order");
 
+        historyOrdersFromorder.setForeground(new java.awt.Color(240, 240, 240));
+        historyOrdersFromorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_order_history_25px.png"))); // NOI18N
+        historyOrdersFromorder.setText("Orders History");
+        historyOrdersFromorder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                historyOrdersFromorderMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -138,12 +148,17 @@ public class JFrameAddCmd extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(about, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 8, Short.MAX_VALUE))
-                    .addComponent(bookorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(55, 55, 55))
+                        .addComponent(historyOrdersFromorder)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(about, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 8, Short.MAX_VALUE))
+                            .addComponent(bookorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(55, 55, 55))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,8 +167,10 @@ public class JFrameAddCmd extends javax.swing.JFrame {
                 .addComponent(bookorder, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jLabel4)
-                .addGap(46, 46, 46)
+                .addGap(34, 34, 34)
                 .addComponent(about)
+                .addGap(35, 35, 35)
+                .addComponent(historyOrdersFromorder)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -163,7 +180,7 @@ public class JFrameAddCmd extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_book_shelf_50px.png"))); // NOI18N
 
-        exitCmd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_exit_sign_25px.png"))); // NOI18N
+        exitCmd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_exit_sign_35px.png"))); // NOI18N
         exitCmd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 exitCmdMousePressed(evt);
@@ -209,7 +226,7 @@ public class JFrameAddCmd extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -332,6 +349,11 @@ public class JFrameAddCmd extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_totalpriceActionPerformed
 
+    private void historyOrdersFromorderMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historyOrdersFromorderMousePressed
+        this.setVisible(false);
+        new ListCmd().setVisible(true);
+    }//GEN-LAST:event_historyOrdersFromorderMousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -374,6 +396,7 @@ public class JFrameAddCmd extends javax.swing.JFrame {
     private javax.swing.JLabel bookorder;
     private javax.swing.JTable commandTable;
     private javax.swing.JLabel exitCmd;
+    private javax.swing.JLabel historyOrdersFromorder;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -434,9 +457,9 @@ public class JFrameAddCmd extends javax.swing.JFrame {
                     continue;
                 }
             }
-            totalprice.setText(String.valueOf(prixtotal));
-
+            
         }
+        totalprice.setText(String.valueOf(prixtotal));
 
     }
 }

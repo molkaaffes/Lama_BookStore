@@ -83,6 +83,7 @@ public class JFrameList extends javax.swing.JFrame {
         bookabout = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         orderbook = new javax.swing.JLabel();
+        historyOrdersfromList = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -144,19 +145,33 @@ public class JFrameList extends javax.swing.JFrame {
             }
         });
 
+        historyOrdersfromList.setForeground(new java.awt.Color(240, 240, 240));
+        historyOrdersfromList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_order_history_25px.png"))); // NOI18N
+        historyOrdersfromList.setText("Orders History");
+        historyOrdersfromList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                historyOrdersfromListMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bookabout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(orderbook, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 8, Short.MAX_VALUE))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(55, 55, 55))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(historyOrdersfromList))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(orderbook, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 8, Short.MAX_VALUE))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bookabout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(39, 39, 39))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,9 +180,11 @@ public class JFrameList extends javax.swing.JFrame {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(orderbook)
-                .addGap(46, 46, 46)
+                .addGap(39, 39, 39)
                 .addComponent(bookabout)
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(historyOrdersfromList)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -181,7 +198,7 @@ public class JFrameList extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_copyright_18px.png"))); // NOI18N
         jLabel3.setText("All rights reserved, LAMA, 2020");
 
-        exitList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_exit_sign_25px.png"))); // NOI18N
+        exitList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_exit_sign_35px.png"))); // NOI18N
         exitList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 exitListMousePressed(evt);
@@ -202,7 +219,7 @@ public class JFrameList extends javax.swing.JFrame {
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 37, Short.MAX_VALUE)
+                        .addGap(0, 53, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,7 +255,7 @@ public class JFrameList extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -313,6 +330,11 @@ public class JFrameList extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitListMousePressed
 
+    private void historyOrdersfromListMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historyOrdersfromListMousePressed
+        this.setVisible(false);
+        new ListCmd().setVisible(true);
+    }//GEN-LAST:event_historyOrdersfromListMousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -351,6 +373,7 @@ public class JFrameList extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bookabout;
     private javax.swing.JLabel exitList;
+    private javax.swing.JLabel historyOrdersfromList;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel3;

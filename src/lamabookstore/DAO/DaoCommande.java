@@ -75,7 +75,7 @@ public class DaoCommande {
             résultats.close();
             return listCommande;
         } catch (SQLException e) {
-            System.out.println("vermegalternant.MyProg.Insert()" + e);
+            System.out.println("exception" + e);
             return null;
         }
 

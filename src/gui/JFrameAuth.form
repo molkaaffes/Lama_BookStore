@@ -195,7 +195,7 @@
         <Component class="javax.swing.JLabel" name="exitAuth">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/gui/images/icons8_exit_sign_25px.png"/>
+              <Image iconType="3" name="/gui/images/icons8_exit_sign_35px.png"/>
             </Property>
           </Properties>
           <Events>
