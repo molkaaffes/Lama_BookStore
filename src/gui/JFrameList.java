@@ -18,10 +18,6 @@ import lamabookstore.DAO.DaoBook;
 import static lamabookstore.DAO.DaoBook.listBook;
 import lamabookstore.entities.Book;
 
-/**
- *
- * @author chokri
- */
 public class JFrameList extends javax.swing.JFrame {
 
     /**
@@ -29,6 +25,8 @@ public class JFrameList extends javax.swing.JFrame {
      */
     public JFrameList() {
         initComponents();
+        jTable_display_books.getColumnModel().getColumn(5) // on récupère le modèle de la colonne d'index 2
+		.setCellRenderer(jTable_display_books.getDefaultRenderer(ImageIcon.class));
         show_book();
     }
 
@@ -62,16 +60,15 @@ public class JFrameList extends javax.swing.JFrame {
 
                 if (list.get(i).getImage() != null) {
                     ImageIcon image = new ImageIcon(new ImageIcon(list.get(i).getImage()).getImage()
-                            .getScaledInstance(150, 100, Image.SCALE_SMOOTH));
+                            .getScaledInstance(150, 120, Image.SCALE_SMOOTH));
                     row[i][5] = image;
                 } else {
                     row[i][5] = null;
-                }
-
+                } 
                 TheModel model = new TheModel(columnname, row);
                 jTable_display_books.setModel(model);
-                jTable_display_books.setRowHeight(50);
-                jTable_display_books.getColumnModel().getColumn(5).setPreferredWidth(50);
+                jTable_display_books.setRowHeight(120);
+                jTable_display_books.getColumnModel().getColumn(5).setPreferredWidth(150);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -116,6 +113,10 @@ public class JFrameList extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable_display_books);
+        if (jTable_display_books.getColumnModel().getColumnCount() > 0) {
+            jTable_display_books.getColumnModel().getColumn(5).setMinWidth(100);
+            jTable_display_books.getColumnModel().getColumn(5).setMaxWidth(100);
+        }
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_delete_25px.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +181,7 @@ public class JFrameList extends javax.swing.JFrame {
                 .addComponent(orderbook)
                 .addGap(46, 46, 46)
                 .addComponent(bookabout)
-                .addContainerGap(430, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -217,7 +218,7 @@ public class JFrameList extends javax.swing.JFrame {
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 837, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(exitList)
                                     .addComponent(jLabel3))
@@ -225,7 +226,7 @@ public class JFrameList extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(139, 139, 139)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2)
                             .addComponent(jButton1))
@@ -252,7 +253,7 @@ public class JFrameList extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(170, 170, 170)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -262,15 +263,13 @@ public class JFrameList extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );

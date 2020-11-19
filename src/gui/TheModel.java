@@ -8,10 +8,7 @@ package gui;
 import javax.swing.Icon;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author Lenovo
- */
+
 public class TheModel extends AbstractTableModel{
 
     private String [] columns ;
@@ -20,8 +17,9 @@ public class TheModel extends AbstractTableModel{
     public TheModel(){}
 
     public TheModel(String[] columns, Object[][] rows) {
+                this.rows = rows;
+
         this.columns = columns;
-        this.rows = rows;
     }
     
     public Class getColumnClass (int column)
