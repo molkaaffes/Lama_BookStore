@@ -1,7 +1,7 @@
 # Lama_BookStore
 
 OUR GIT :
-https://github.com/molkaaffes/Lama_BookStore/branches
+https://github.com/molkaaffes/Lama_BookStore
 
 
 
