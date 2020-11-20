@@ -6,9 +6,9 @@
 package gui;
 
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,7 +18,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -297,7 +296,7 @@ public class JFrameInsert extends javax.swing.JFrame {
             
 
 
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore", "root", "admin");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
             /**
              * *********************
              */
@@ -305,14 +304,17 @@ public class JFrameInsert extends javax.swing.JFrame {
             //InputStream is = new FileInputStream(f);
              PreparedStatement stat;
              String image= txt_filename.getText();
-            image=image.replace("\\","\\\\");
+             File f = new File(image);
+             InputStream is = new FileInputStream(f);
+           // image=image.replace("\\","\\\\");
 
-            stat = conn.prepareStatement("insert into book " + " (title,price, author,releaseDate,image)" + " values (?, ? ,?,?,'"+image+"')");
+            stat = conn.prepareStatement("insert into book " + " (title,price, author,releaseDate,image)" + " values (?, ? ,?,?,?)");
             stat.setString(1, title.getText());
             stat.setDouble(2, Double.parseDouble(price.getText()));
             stat.setString(3, author.getText());
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             java.util.Date date = sdf.parse(releaseDate.getText());
+            stat.setBinaryStream(5,(InputStream)is,(int)f.length());
             stat.setDate(4, (new java.sql.Date(date.getTime())));
                         stat.executeUpdate();
 
@@ -335,7 +337,9 @@ public class JFrameInsert extends javax.swing.JFrame {
             ex.printStackTrace();
         } catch (ParseException e) {
             System.out.println(e.getStackTrace());
-        } 
+        } catch (FileNotFoundException ex) { 
+         Logger.getLogger(JFrameInsert.class.getName()).log(Level.SEVERE, null, ex);
+     } 
         /*catch (FileNotFoundException ex) {
          Logger.getLogger(JFrameInsert.class.getName()).log(Level.SEVERE, null, ex);
      }*/

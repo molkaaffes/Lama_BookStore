@@ -320,7 +320,7 @@ public class JFrameAddCmd extends javax.swing.JFrame {
         }
         Connection conn;
         try {
-              conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore", "root", "admin");
+              conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
              DaoCommande.addCommande(listbook, 1, conn);
              JOptionPane.showMessageDialog(null, "Commande added!");
         } catch (SQLException ex) {

@@ -23,11 +23,14 @@ public class JFrameList extends javax.swing.JFrame {
     /**
      * Creates new form JFrameList
      */
+    private ImageIcon image;
+
     public JFrameList() {
         initComponents();
-        jTable_display_books.getColumnModel().getColumn(5) // on récupère le modèle de la colonne d'index 2
-		.setCellRenderer(jTable_display_books.getDefaultRenderer(ImageIcon.class));
+      //  jTable_display_books.getColumnModel().getColumn(5) 
+        //        .setCellRenderer(jTable_display_books.getDefaultRenderer(ImageIcon.class));
         show_book();
+
     }
 
 //    public List<Book> bookList() {
@@ -44,31 +47,46 @@ public class JFrameList extends javax.swing.JFrame {
 //    }
     public void show_book() {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore", "root", "admin");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
             ArrayList<Book> list = DaoBook.listBook(conn);
 
-            String[] columnname = {"ID", "TITLE", "PRICE", "AUTHOR", "DATE", "IMAGE"};
+            String[] columnname = {"ID", "TITLE", "PRICE", "AUTHOR","DATE","","IMAGE"};
 
-            Object[][] row = new Object[list.size()][6];
+            Object[][] row = new Object[list.size()][7];
             for (int i = 0; i < list.size(); i++) {
+                image = new ImageIcon(new ImageIcon(list.get(i).getImage()).getImage()
+                        .getScaledInstance(150, 120, Image.SCALE_SMOOTH));
 
-                row[i][0] = list.get(i).getId();
+               row[i][0] = list.get(i).getId();
                 row[i][1] = list.get(i).getTitle();
                 row[i][2] = list.get(i).getPrice();
-                row[i][3] = list.get(i).getAuthor();
+                row[i][3] = list.get(i).getAuthor();              
                 row[i][4] = list.get(i).getReleaseDate();
+                row [i][5] =list.get(i).getReleaseDate();
+                row[i][6] = image;
+                
+                System.out.println(row[i][6]);
+                
+                // row[i][5] = list.get(i).getId();
 
-                if (list.get(i).getImage() != null) {
-                    ImageIcon image = new ImageIcon(new ImageIcon(list.get(i).getImage()).getImage()
-                            .getScaledInstance(150, 120, Image.SCALE_SMOOTH));
-                    row[i][5] = image;
-                } else {
-                    row[i][5] = null;
-                } 
+                /* if (list.get(i).getImage() != null) {
+                 System.out.println("ahleme");
+                 image = new ImageIcon(new ImageIcon(list.get(i).getImage()).getImage()
+                 .getScaledInstance(150, 120, Image.SCALE_SMOOTH));
+                     
+                 System.out.println(image);
+                 ahleme.setIcon(image);
+
+                 } else {
+                 row[i][5] = null;
+                 }*/
                 TheModel model = new TheModel(columnname, row);
-                jTable_display_books.setModel(model);
-                jTable_display_books.setRowHeight(120);
-                jTable_display_books.getColumnModel().getColumn(5).setPreferredWidth(150);
+                jTableTest.setModel(model);
+               jTableTest.setRowHeight(120);
+               jTableTest.getColumnModel().getColumn(5).setPreferredWidth(150);
+               
+               	jTableTest.getColumnModel().getColumn(5).setMinWidth(0);
+		jTableTest.getColumnModel().getColumn(5).setMaxWidth(0);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -85,8 +103,6 @@ public class JFrameList extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_display_books = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -97,26 +113,13 @@ public class JFrameList extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         exitList = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableTest = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(71, 120, 197));
-
-        jTable_display_books.setBackground(new java.awt.Color(71, 120, 197));
-        jTable_display_books.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "TITLE", "PRICE", "AUTHOR", "DATE", "IMAGE"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable_display_books);
-        if (jTable_display_books.getColumnModel().getColumnCount() > 0) {
-            jTable_display_books.getColumnModel().getColumn(5).setMinWidth(100);
-            jTable_display_books.getColumnModel().getColumn(5).setMaxWidth(100);
-        }
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/icons8_delete_25px.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -202,31 +205,44 @@ public class JFrameList extends javax.swing.JFrame {
             }
         });
 
+        jTableTest.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(jTableTest);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(exitList)
                                     .addComponent(jLabel3))
-                                .addGap(23, 23, 23))))
+                                .addGap(23, 23, 23))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                        .addGap(133, 133, 133)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2)
                             .addComponent(jButton1))
@@ -234,7 +250,8 @@ public class JFrameList extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,21 +268,18 @@ public class JFrameList extends javax.swing.JFrame {
                         .addGap(44, 44, 44)
                         .addComponent(jButton2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
+                        .addGap(130, 130, 130)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addContainerGap())
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,11 +295,11 @@ public class JFrameList extends javax.swing.JFrame {
 
         Connection conn;
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore", "root", "admin");
-            DaoBook.delete(conn, jTable_display_books.getSelectedRow());
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+            DaoBook.delete(conn, jTableTest.getSelectedRow());
             //jTable1.getModel().fireTableDataChanged();
-            DefaultTableModel model = (DefaultTableModel) jTable_display_books.getModel();
-            ((DefaultTableModel) jTable_display_books.getModel()).removeRow(jTable_display_books.getSelectedRow());
+            DefaultTableModel model = (DefaultTableModel) jTableTest.getModel();
+            ((DefaultTableModel) jTableTest.getModel()).removeRow(jTableTest.getSelectedRow());
             //show_book();
             //String value = (jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0).toString());
         } catch (SQLException ex) {
@@ -300,15 +314,15 @@ public class JFrameList extends javax.swing.JFrame {
         try {
             Book book = new Book();
 
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore", "root", "admin");
-            book.setId(Integer.parseInt(jTable_display_books.getModel().getValueAt(jTable_display_books.getSelectedRow(), 0).toString()));
-            book.setTitle(jTable_display_books.getModel().getValueAt(jTable_display_books.getSelectedRow(), 1).toString());
-            book.setPrice(Double.parseDouble(jTable_display_books.getModel().getValueAt(jTable_display_books.getSelectedRow(), 2).toString()));
-            book.setAuthor(jTable_display_books.getModel().getValueAt(jTable_display_books.getSelectedRow(), 3).toString());
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+            book.setId(Integer.parseInt(jTableTest.getModel().getValueAt(jTableTest.getSelectedRow(), 0).toString()));
+            book.setTitle(jTableTest.getModel().getValueAt(jTableTest.getSelectedRow(), 1).toString());
+            book.setPrice(Double.parseDouble(jTableTest.getModel().getValueAt(jTableTest.getSelectedRow(), 2).toString()));
+            book.setAuthor(jTableTest.getModel().getValueAt(jTableTest.getSelectedRow(), 3).toString());
 //            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 //            String stringDate = jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 3).toString();
 //            book.setReleaseDate(sdf.parse(stringDate));
-            DaoBook.update(conn, jTable_display_books.getSelectedRow(), book);
+            DaoBook.update(conn, jTableTest.getSelectedRow(), book);
         } catch (SQLException ex) {
             Logger.getLogger(JFrameList.class.getName()).log(Level.SEVERE, null, ex);
         }// catch (ParseException ex) {
@@ -378,8 +392,8 @@ public class JFrameList extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable_display_books;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableTest;
     private javax.swing.JLabel orderbook;
     // End of variables declaration//GEN-END:variables
 }
